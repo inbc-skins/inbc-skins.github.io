@@ -1,0 +1,17 @@
+html{max-width:1200px; margin:0 auto;}
+body{background:#f5f6f8; color:#000; margin:24px 0px; font:120%/1.2 Segoe UI,Meiryo,sans-serif;}
+main{display:flex;}
+.ls{display:inline-block; width:108px;}
+.rs{display:inline-block;}
+.ls>img{width:100px; height:auto; margin:4px;}
+.rs div{display:inline-block; margin:0px 4px 16px;}
+a:link{color:#00f; text-decoration:none;}
+a:visited{#508;}
+a:hover{color:#f00; text-decoration:underline;}
+.t:hover{cursor:pointer; opacity:0.8;} img{vertical-align:top;} p{margin:0px; text-align:center;}
+.overlay{position:fixed; background:rgba(0,0,0,0.2); transition:all 0.2s 0s ease; opacity:0; top:0; left:0; bottom:0; right:0; visibility:hidden;}
+.pop{display:none;}
+.pop:checked+.overlay{visibility:visible; opacity:1; z-index:10; background-color:#000000D0; width:100%;}
+.window{background:#fff; padding:24px; border-radius:5px; overflow:auto; max-width:95%; min-width:fit-content; max-height:95%; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9;}
+.close{position:absolute; top:0px; right:0px; font:bold 18px/1 Verdana,sans-serif; padding:4px 7px; cursor:pointer;}
+.close:hover{color:#f00;}
