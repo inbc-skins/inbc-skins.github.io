@@ -81,3 +81,4 @@ button.bxpad, input[type="submit"].bxpad,
 .lbprm { color: #1844bc; border: solid 2px; }
 .lbpbg, .lbprm { font-weight: bold; cursor: pointer; border-radius: 16px; }
 
+a {pointer-events: none;}
