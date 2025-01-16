@@ -1,5 +1,5 @@
 html{max-width:1200px; margin:0 auto;}
-body{background:#f5f6f8; color:#000; margin:24px 0px; font:120%/1.2 Segoe UI,Meiryo,sans-serif;}
+body{background:#f5f6f8; color:#000; margin:24px 0px; font:114%/1.2 Segoe UI,Verdana,Meiryo,sans-serif;}
 main{display:flex;}
 .ls{display:inline-block; width:108px;}
 .rs{display:inline-block;}
