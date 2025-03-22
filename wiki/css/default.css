@@ -1,0 +1,552 @@
+@charset "utf-8";
+
+/* Index ++++++++++++++++++++++++++++++++
+
+	Upload-control
+		swfupload button
+		uploaded table
+	a_Link jump
+	Block_edit iconimg_reset
+	User_comment
+	Manage_space
+	Imanage_space table Imanage_thumb,size,day
+	Imanage_space table Ititle
+	Imanage_space Search
+	Page_history
+	Lightbox
+	Default Style Wiki Rule
+
++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+/* =Upload-control
+------------------------------------------------- */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+/* for safari4ÅïChrome */
+input[type="file"] {width: 250px;}
+}
+
+.control_menu {
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	margin:0 0 5px ;
+}
+
+.control_menu li {
+	float:left;
+	margin-left:-11px;
+	padding:0 20px 3px 10px;
+	border-left:1px solid #AFAFAF;
+}
+
+.control_menu .selected {
+	font-weight:bold;
+}
+
+#swfupload-control p#queuestatus {
+	clear: both;
+	margin: 10px 5px;
+}
+
+#swfupload-control #log {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#log li p {
+	margin: 0;
+	line-height: 18px;
+}
+
+#swfupload-control #log li {
+	list-style-position: inside;
+	margin: 2px 0;
+	border: 1px solid #CCCCCC;
+	padding: 10px;
+	color: #333333;
+	background: #FFFFFF;
+	position: relative;
+	width: 95%;
+}
+
+*html body #swfupload-control #log li {			/* IE6 */
+	width: 80%;
+	margin: 2px auto;
+}
+
+*+html body #swfupload-control #log li {		/* IE7 */
+	width: auto;
+}
+
+#swfupload-control #log li .progressbar {
+	border: 1px solid #333333;
+	height: 5px;
+	background: #FFFFFF;
+	margin-top: 5px;
+	clear: both;
+}
+
+#swfupload-control #log li .progress {
+	background: #999999;
+	width: 0%;
+	height: 5px;
+}
+
+#swfupload-control #log li .alias input {
+	width: 70%;
+}
+
+#swfupload-control #log li.success {
+	border: 1px solid #CCCCCC;
+	background: #FFFFEC;
+}
+
+#swfupload-control #log li.failed {
+	border: 1px solid #888888;
+	background: #CCCCCC;
+}
+
+#swfupload-control #log li span.cancel {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 20px;
+	height: 20px;
+	background: url(/img/cancel.png) no-repeat;
+	cursor: pointer;
+}
+
+
+
+/* =swfupload button
+------------------------------------------------- */
+
+#swfupload-control #swfupload-control-box {
+	position: relative;
+	padding-bottom: 5px;
+}
+
+#swfupload-control #swfupload-control-box .swfupload {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+
+
+/* =uploaded table
+------------------------------------------------- */
+
+#uploaded table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+#uploaded table td,
+#uploaded table th {
+	border: 1px solid #cccccc;
+	padding: 5px;
+	text-align: left;
+	font-weight: normal;
+}
+
+#uploaded table th {
+	background-color: #666666;
+	text-align: center;
+	vertical-align: middle;
+	color: #FFFFFF;
+	width: 100px;
+}
+
+#uploaded table ul {
+	padding-top: 3px;
+}
+
+#uploaded table li {
+	clear: both;
+	padding-bottom: 3px;
+	list-style: none;
+}
+
+#uploaded table p {
+	float: left;
+	width: 5em;
+	text-align: right;
+	padding: 3px 0 0 0;
+	margin: 0;
+	font-weight: normal;
+}
+
+#uploaded table input{
+	margin: 0 0 0 5px;
+	width: 70%;
+}
+
+
+
+/* =a_Link jump
+------------------------------------------------- */
+
+.jump {
+	background: url(/img/icon_jump.gif) no-repeat center right;
+	padding-right:16px;
+}
+
+
+
+/* =Block_edit iconimg_reset
+------------------------------------------------- */
+
+.anchor_super {
+	display: none;
+}
+
+.user_body h2 .anchor_super img,
+.user_body h3 .anchor_super img,
+.user_body h4 .anchor_super img {
+	padding: 0;
+	margin: 0 0 0 5px;
+	vertical-align: middle;
+	border: none;
+	background: transparent;
+}
+
+
+
+/* =User_comment
+------------------------------------------------- */
+
+.user_comment .user_comment_list {
+	padding-bottom: 20px;
+}
+
+.user_comment .user_comment_list li.ulist1 input,
+.user_comment .user_comment_list li.ulist2 input,
+.user_comment .user_comment_list li.ulist3 input {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.user_comment .user_comment_form  {
+	padding-bottom: 20px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.user_comment .user_comment_form img {
+	padding: 0;
+	margin: 3px 0 5px 0;
+	vertical-align: middle;
+	border: none;
+	background: none;
+}
+
+.user_comment .user_comment_form p.user_comment_message {
+	font-weight: bold;
+	margin: 0;
+}
+
+.user_comment .user_comment_form p.user_comment_error {
+	font-weight: bold;
+	margin-left: 0;
+	color: #ff0000;
+}
+
+.user_comment .user_comment_form p.user_comment_link {
+	margin: 0;
+}
+
+.user_comment .user_comment_form input {
+	vertical-align: middle;
+	margin: 3px;
+}
+
+input.tipped {
+    color: #999999;
+}
+
+.user_comment .user_comment_form input.disabled {
+    ime-mode: disabled;
+}
+
+.user_comment_edit_area .user_comment_ptitle {
+	padding-bottom: 20px;
+}
+
+
+
+/* =Manage_space
+------------------------------------------------- */
+
+.pmanage_space .sort {
+	margin-bottom: 10px;
+}
+
+.pmanage_space table th.cid {
+	width: 60px;
+}
+
+
+
+/* Imanage_space table Imanage_thumb,size,day
+------------------------------------------------- */
+
+.imanage_space table .imanage_thumb {
+	padding: 5px 0px;
+	width: 110px;
+}
+
+.imanage_space table .imanage_thumb input {
+	vertical-align: middle;
+}
+
+.imanage_space table .imanage_thumb input {
+	margin-bottom: 3px;
+}
+
+.imanage_space table .imanage_size {
+	width: 50px;
+	white-space: nowrap;
+}
+
+.imanage_space table .imanage_day {
+	width: 70px;
+}
+
+
+
+/* =Imanage_space table Ititle
+------------------------------------------------- */
+
+.imanage_space table .ititle li input.imanage_list_tag:hover {
+	background-color: #ececec;
+}
+
+.imanage_space table .ititle li {
+	clear: both;
+	padding-bottom: 3px;
+}
+
+.imanage_space table .ititle p {
+	float: left;
+	width: 5em;
+	text-align: right;
+	padding: 3px 0 0 0;
+	margin: 0;
+}
+
+#main .imanage_space table .ititle input {
+	margin: 0 0 0 5px;
+	width: 70%;
+}
+
+.imanage_space table .ititle input.imanage_list_tag {
+	border: 0;
+	padding: 1px;
+	color: #666666;
+}
+
+/* body_fixed3 */
+#body_fixed3 .imanage_space table .ititle li {
+	clear: both;
+	padding-bottom: 3px;
+}
+
+#body_fixed3 .imanage_space table .ititle p {
+	float: none;
+	text-align: left;
+	padding: 0;
+	margin: 0;
+}
+
+#body_fixed3 .imanage_space #img_result .ititle li input {
+	width: 165px;
+	margin: 0;
+}
+
+#body_fixed3 .imanage_space #img_result .ititle li input.imanage_list_tag {
+	border: 0;
+	color: #666666;
+	width: 165px;
+	padding: 1px;
+}
+
+
+
+/* =Imanage_space Search
+------------------------------------------------- */
+
+.imanage_space #search #search_title {
+	width: 150px;
+	margin-right: 3px;
+}
+
+.imanage_space #search button {
+	margin-right: 3px;
+}
+
+/* body_fixed3 */
+#body_fixed3 .imanage_space #search #search_title {
+	width: 130px;
+}
+
+
+
+/* =Page_history
+------------------------------------------------- */
+
+#backup_date {
+	font-weight: bold;
+	font-size: 108%;
+}
+
+#diff {
+	margin-top: 10px;
+	border: none;
+}
+
+#diff td {
+	border: none;
+	word-break: break-all;
+	padding: 1px 2px;
+}
+
+#diff th {
+	padding: 1px 2px;
+	white-space: nowrap;
+}
+
+.diff_added {
+	background: none repeat scroll 0 0 #ccffcc;
+}
+
+.diff_removed {
+	background: none repeat scroll 0 0 #ffcccc;
+}
+
+th.line-num {
+	border: 1px solid #bababa;
+	color: #999999;
+	font-size: 77%;
+	padding-right: 3px;
+	text-align: right;
+	width: 2%;
+}
+
+td.line-code pre {
+	text-align: left;
+	white-space: normal;
+}
+
+
+
+/* =Lightbox
+------------------------------------------------- */
+
+#lightbox {
+	background-color:#eeeeee;
+	padding: 10px;
+}
+
+#lightboxDetails {
+	font-size: 0.8em;
+	padding-top: 0.4em;
+}	
+
+* html #overlay {
+	background-color: #333333;
+	back\ground-color: transparent;
+	background-image: url(/img/blank.gif);
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/img/overlay.png", sizingMethod="scale");
+}
+#lightbox kbd { font-weight: bold; }
+#lightboxCaption { float: left; }
+#keyboardMsg { float: right; }
+#closeButton { top: 5px; right: 5px; }
+#lightbox img { border: none; clear: both;} 
+#overlay img { border: none; }
+#overlay { background-image: url(/img/overlay.png); }
+
+
+
+/* =Default Style Wiki Rule 
+------------------------------------------------- */
+
+.user_body tt {
+	font-family: monospace;
+}
+
+.footnote_foot {
+	border-top: 1px solid #cccccc;
+	padding-top: 10px;
+	margin-top: 50px;
+}
+
+#plg_menu .menubody .area_open,
+.treemenu .area_open,
+.treemenu2 .area_open,
+.openclose .area_open,
+.region .area_open,
+span.area_open {
+	background:url(http://wiki.fc2.com/admin/img/btn_minus.png) no-repeat 0 2px;
+	background-repeat:no-repeat;
+	margin: 0;
+	padding-left: 14px;
+}
+
+#plg_menu .menubody .area_close,
+.treemenu .area_close,
+.treemenu2 .area_close,
+.openclose .area_close,
+.region .area_close,
+span.area_close {
+	background: url(http://wiki.fc2.com/admin/img/btn_plus.png) no-repeat 0 2px;
+	margin: 0;
+	padding-left: 14px;
+}
+
+
+span.tree_title {
+	cursor: pointer;
+	color: #79a7c6;
+}
+
+.pulldown_jump select {
+	margin-right: 5px;
+}
+
+.new {
+	font-weight: bold;
+	color: #ff0000;
+}
+
+#plg_menu .menubody .new img,
+.user_body .new img {
+	padding: 0;
+	margin: 0 5px 0 0;
+	vertical-align: middle;
+	border: none;
+	background-color: transparent;
+}
+
+.splitinclude {
+	width: 100%;
+}
+
+.splitinclude:after {
+	content:".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.splitinclude .splitinclude_inner {
+	float: left;
+	overflow: hidden;
+}
