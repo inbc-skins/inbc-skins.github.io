@@ -454,3 +454,21 @@ $(function() {
 	
 	$('<li>').addClass('social_menu').append($iframe).appendTo('#header_menu');
 });
+
+// 二重エンコードをデコードする関数
+function decodeDoubleEncodedUrl(url) {
+    let firstDecode = decodeURIComponent(url); // 1回目のデコード
+    let secondDecode = decodeURIComponent(firstDecode); // 2回目のデコード
+    return secondDecode;
+}
+
+// ページ内のリンクに適用
+document.querySelectorAll('a').forEach(function(link) {
+    let url = link.href;
+
+    // 二重エンコードされたURLを修正
+    let fixedUrl = decodeDoubleEncodedUrl(url);
+
+    // 修正されたURLをリンクのhrefに再設定
+    link.href = fixedUrl;
+});
