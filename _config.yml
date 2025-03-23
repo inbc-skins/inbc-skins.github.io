@@ -1,0 +1,3 @@
+exclude:
+  - "_CC.html"
+  - "_CC"
