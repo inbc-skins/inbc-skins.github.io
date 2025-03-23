@@ -455,20 +455,26 @@ $(function() {
 	$('<li>').addClass('social_menu').append($iframe).appendTo('#header_menu');
 });
 
-// 二重エンコードをデコードする関数
-function decodeDoubleEncodedUrl(url) {
-    let firstDecode = decodeURIComponent(url); // 1回目のデコード
-    let secondDecode = decodeURIComponent(firstDecode); // 2回目のデコード
-    return secondDecode;
-}
+// jQueryの準備が整ったら実行
+$(document).ready(function() {
+    // 二重エンコードをデコードする関数
+    function decodeDoubleEncodedUrl(url) {
+        // 1回目のデコード
+        var firstDecode = decodeURIComponent(url);
+        // 2回目のデコード
+        var secondDecode = decodeURIComponent(firstDecode);
+        return secondDecode;
+    }
 
-// ページ内のリンクに適用
-document.querySelectorAll('a').forEach(function(link) {
-    let url = link.href;
+    // すべてのリンクを処理
+    $('a').each(function() {
+        var $link = $(this);
+        var url = $link.attr('href');
 
-    // 二重エンコードされたURLを修正
-    let fixedUrl = decodeDoubleEncodedUrl(url);
+        // URLが二重エンコードされている場合、デコードして修正
+        var fixedUrl = decodeDoubleEncodedUrl(url);
 
-    // 修正されたURLをリンクのhrefに再設定
-    link.href = fixedUrl;
+        // 修正されたURLをリンクに設定
+        $link.attr('href', fixedUrl);
+    });
 });
