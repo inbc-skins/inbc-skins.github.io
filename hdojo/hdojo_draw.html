@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Heroes Dojo draw</title>
+<script src="jquery-3.2.1.min.js"></script>
+<style><!--
+body{margin:0px 30px 150px; background:#f4f4f4; color:#000;}
+* {font:16px/1.1 Verdana,Meiryo,sans-serif; border-collapse:collapse; vertical-align:top;}
+h1 {font-weight:bold; margin:10px 0px;}
+.tblBox {display:table; margin-bottom:20px;}
+.tBox {display:table-cell; width:88px; height:304px; border:1px solid #aaa; padding:12px 10px; white-space:nowrap;}
+.tBox:nth-child(1) {width:320px;}
+.tBox:nth-child(2) {width:150px; display:none;}
+.num{display:inline-block; color:#666; margin:8px 0px 0px -5px;}
+textarea {background:#fff; color:#000; border:1px solid #aaa;}
+option {min-height:0.5em; max-height:1.144em !important; padding: 0px 2px 0px;}
+#in_entries {color:#000; background:#fff; width:265px; height:288px; margin-top:4px; padding:3px 6px;}
+#in_grpname {color:#000; background:#fff; width:120px; height:288px; margin-top:4px; padding:3px 6px;}
+#in_grp_count{background:#fff; border:1px solid #aaa; width:3em; ime-mode:disabled; margin:4px 0px 0px 20px; padding:1px 0px 0px 1px;}
+option:hover {background-color: highlight; color:#fff;}
+#in_submit {font-size:20px; padding:6px 20px; margin:4px 0px 10px;}
+#ansDiv {margin-top:30px;} #ansDiv, .g_box, #result {font-size:13px;}
+a {text-decoration:none; padding:5px 0px 1px; border-bottom:1px solid;}
+a:link, a:visited {color:#000;} a:hover {color:#666;}
+-->
+</style>
+</head>
+<body>
+<h1>Heroes Dojo draw</h1>
+<div class="tblBox">
+<div class=tBox><div class="num">01<br>02<br>03<br>04<br>05<br>06<br>07<br>08<br>09<br>10<br>11<br>12<br>13<br>14<br>15<br>16</div>
+<textarea id="in_entries"></textarea></div>
+<div class=tBox><textarea id="in_grpname"></textarea></div>
+<div class=tBox><select id="in_grp_count" size="16">
+<option value="2" selected>2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+</select>
+</div>
+<div class=tBox><div style="text-align:center;">
+<input id="in_submit" type="button" value="roll"><br>
+<a href="#result">bottom</a></div></div>
+</div>
+<div class="boxCont" id="grp_boxs"></div>
+<div id="result"></div>
+<script>
+$(function(){
+  var _member = [];
+  var _grp_count = 0;
+  var _group;
+  var _group_name = [];
+  var Com = "------------------------------------"
+
+  var bgc = new Array();
+    bgc[0] = "#f4f4f4";
+    bgc[1] = "#f4f4f4";
+    bgc[2] = "#f4f4f4";
+
+  var init = function(){
+    _grp_count = parseInt($("#in_grp_count").val());
+    var member = $("#in_entries").val();
+    member = member.split("\n");
+    _member = [];
+    var i;
+    for( i=0; i<member.length; ++i){
+      if($.inArray(member[i],_member) != -1 ){
+        if(!confirm("メンバー「"+ member[i] +"」が重複しています。そのまま続けますか？"))
+          return false;
+      }
+      if($.trim(member[i]) != "")
+        _member.push(member[i]);
+    }
+    var group_name = $("#in_grpname").val();
+    group_name = group_name.split("\n");
+    _group_name = [];
+    for( i=0; i<group_name.length; ++i){
+      if(group_name[i] != "")
+        _group_name.push(group_name[i]);
+    }
+    if(_group_name.length ==0){
+      auto_grp_name();
+    }
+    if( _group_name.length != 0 && _group_name.length != _grp_count){
+      _grp_count = _group_name.length;
+      $("#in_grp_count").val(_grp_count);
+    //  if(!confirm("グループ名の数がグループ数と異なっています。\nそのまま続けるとグループ名は数字で表示をします。"))
+    //    return false;
+    //  auto_grp_name();
+    }
+    return (_grp_count > 1 && _grp_count <= _member.length && _grp_count < 21)? true : false;
+  };
+
+  var auto_grp_name = function(){
+    _group_name = [];
+    for(var i=1; i<=_grp_count; ++i)
+      _group_name.push("Match " + i);//
+  };
+
+  var shuffle = function(arr){
+    var i, j, temp;
+    for( i = arr.length-1; i>0 ; --i){
+      j = Math.floor(Math.random()*(i+1));
+      temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
+  };
+
+  var make_group = function(member, grp_count){
+    var group = new Array(grp_count);
+    var i,j;
+    for(i=0; i<group.length; ++i){
+      group[i] = new Array();
+    }
+    while(member.length){
+      for(i=0; i<group.length; ++i){
+        if(member.length == 0){
+          break;
+        }
+        group[i].push(member.pop());
+      }
+    }
+    return group;
+  };
+  var make_box = function(boxnum){
+    $("#grp_boxs").children().remove();
+	var tr_count = boxnum;
+    //var tr_count = Math.ceil(boxnum/3);
+	if(boxnum>0){
+      var startObj = document.createElement("div");
+	  startObj.id = "ansDiv";
+	  $("#grp_boxs").append(startObj);
+	  $("#ansDiv").append(""+Com+"<br>:dancer: **組み合わせです**<br><br>");
+	}
+    for(var j=0; j<tr_count; ++j){
+      var trObj = document.createElement("tr");
+      bgc = shuffle(bgc);
+      for( var i=0; i < 3 && i<boxnum-3*j ; ++i ){
+/*
+		var tdObj = document.createElement("td");		
+        tdObj.className = "grp_box";
+        tdObj.style.cssText = "background-color:" + bgc[i];
+        trObj.appendChild(tdObj);
+*/
+		var tdObj = document.createElement("div");		
+        tdObj.className = "g_box";
+        tdObj.style.cssText = "background-color:" + bgc[i];
+        //trObj.appendChild(tdObj);
+		$("#grp_boxs").append(tdObj);
+      }
+      //$("#grp_boxs").append(trObj);
+    }
+  };
+
+  var draw_member = function(group){
+    var i=0;
+    $("div.g_box").each(function(){
+      $(this).append("" + _group_name[i] + "<br>> ");
+      var str = group[i].join("<br>> ");
+      $(this).append(str);
+      ++i;
+    });
+  };
+
+  $("#in_submit").click(function(){
+    if(init()){
+      _member = shuffle(_member);
+      _group = make_group(_member, _grp_count);
+      make_box(_grp_count);
+      draw_member(_group);
+      draw_csv(_group);
+    }
+  });
+
+    $("#btn_clear").click(function(){
+    $("#grp_boxs").children().remove();
+    $("#in_entries").val("");
+    $("#in_grp_count").val("2");
+    $("#in_grpname").val("");
+    $("#csv_area").val("");
+  });
+
+  var draw_csv = function( group ){
+    var csv_text = "";
+    for(var i=0; i < _grp_count; i++){
+      csv_text += _group_name[i] + "," + group[i].join(",");
+      csv_text += "\n";
+    }
+    var $csv_area = $("#csv_area");
+    $csv_area.attr("rows", _grp_count + 1);
+    $csv_area.val(csv_text);
+  };
+
+  //$("select[id='in_grp_count']").change(function(){
+    //_grp_count = $("#in_grp_count").val();
+    //$("#in_grpname").val("");
+  //});
+});
+
+$(function() {
+  // ボタン・クリック時に1度だけ反映
+  $("#in_submit").one("click",
+    function(e) {
+  $("#result").append("<br>:dancer: **エンジョイ＆エキサイティング！！**<br>------------------------------------");
+    });
+});
+</script>
+</body>
+</html>
